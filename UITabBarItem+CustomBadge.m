@@ -19,7 +19,7 @@
 {
     
     UIFont *myAppFont = [UIFont systemFontOfSize:13.0];
-    UIColor *myAppFontColor = [UIColor greenColor];
+    UIColor *myAppFontColor = [UIColor whiteColor];
     UIColor *myAppBackColor = [UIColor lightGrayColor];
     
     [self setCustomBadgeValue:value withFont:myAppFont andFontColor:myAppFontColor andBackgroundColor:myAppBackColor];
@@ -46,7 +46,6 @@
     
     for(UIView *sv in v.subviews)
     {
-        NSLog(@"%@", sv);
         NSString *str = NSStringFromClass([sv class]);
         
         if([str isEqualToString:@"_UIBadgeView"])
@@ -55,6 +54,7 @@
             [l setFont:font];
             [l setText:value];
             [l setBackgroundColor:backColor];
+            [l setTextColor:color];
             [l setTextAlignment:NSTextAlignmentCenter];
             
             l.layer.cornerRadius = l.frame.size.height/2;
