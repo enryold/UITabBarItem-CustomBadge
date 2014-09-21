@@ -10,6 +10,7 @@
 
 
 #define CUSTOM_BADGE_TAG 99
+#define OFFSET 0.6f
 
 
 @implementation UITabBarItem (CustomBadge)
@@ -46,11 +47,14 @@
     
     for(UIView *sv in v.subviews)
     {
+        NSLog(@"%@", sv);
         NSString *str = NSStringFromClass([sv class]);
         
         if([str isEqualToString:@"_UIBadgeView"])
         {
-            UILabel *l = [[UILabel alloc] initWithFrame:[sv frame]];
+            UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(-(OFFSET/2), -(OFFSET/2), sv.frame.size.width+OFFSET, sv.frame.size.height+OFFSET)];
+            
+            
             [l setFont:font];
             [l setText:value];
             [l setBackgroundColor:backColor];
@@ -60,13 +64,14 @@
             l.layer.cornerRadius = l.frame.size.height/2;
             l.layer.masksToBounds = YES;
             
-            [v addSubview:l];
-            [sv setHidden:YES];
+            
+            [sv addSubview:l];
             
             l.tag = CUSTOM_BADGE_TAG;
         }
     }
 }
+
 
 
 @end
