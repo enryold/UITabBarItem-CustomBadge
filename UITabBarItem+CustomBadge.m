@@ -47,12 +47,12 @@
     
     for(UIView *sv in v.subviews)
     {
-        NSLog(@"%@", sv);
+        
         NSString *str = NSStringFromClass([sv class]);
         
         if([str isEqualToString:@"_UIBadgeView"])
         {
-            UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(-(OFFSET/2), -(OFFSET/2), sv.frame.size.width+OFFSET, sv.frame.size.height+OFFSET)];
+            UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, sv.frame.size.width, sv.frame.size.height)];
             
             
             [l setFont:font];
@@ -64,6 +64,12 @@
             l.layer.cornerRadius = l.frame.size.height/2;
             l.layer.masksToBounds = YES;
             
+            // Fix for border
+            sv.layer.borderWidth = 1;
+            sv.layer.borderColor = [backColor CGColor];
+            sv.layer.cornerRadius = sv.frame.size.height/2;
+            sv.layer.masksToBounds = YES;
+            
             
             [sv addSubview:l];
             
@@ -71,6 +77,7 @@
         }
     }
 }
+
 
 
 
