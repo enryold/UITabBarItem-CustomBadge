@@ -34,17 +34,8 @@
     
     [self setBadgeValue:value];
     
-    // REMOVE PREVIOUS IF EXIST
-    for(UIView *sv in v.subviews)
-    {
-        if(sv.tag == CUSTOM_BADGE_TAG)
-        {
-            [sv removeFromSuperview];
-            continue;
-        }
-    }
     
-    
+
     for(UIView *sv in v.subviews)
     {
         
@@ -52,6 +43,12 @@
         
         if([str isEqualToString:@"_UIBadgeView"])
         {
+            for(UIView *ssv in sv.subviews)
+            {
+                // REMOVE PREVIOUS IF EXIST
+                if(ssv.tag == CUSTOM_BADGE_TAG) { [ssv removeFromSuperview]; }
+            }
+            
             UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, sv.frame.size.width, sv.frame.size.height)];
             
             
