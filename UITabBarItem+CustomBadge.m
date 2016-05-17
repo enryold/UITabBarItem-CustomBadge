@@ -30,7 +30,7 @@
 
 -(void) setCustomBadgeValue: (NSString *) value withFont: (UIFont *) font andFontColor: (UIColor *) color andBackgroundColor: (UIColor *) backColor
 {
-    UIView *v = [self valueForKey:@"view"];
+    UIView *v = (UIView *)[self performSelector:@selector(view)];
     
     [self setBadgeValue:value];
     
